@@ -27,7 +27,7 @@ describe("BackendUnavailable accessibility", () => {
 
   it("refreshes the route when no retry callback is supplied", async () => {
     const refresh = vi.fn();
-    vi.mocked(useRouter).mockReturnValue({ refresh } as ReturnType<typeof useRouter>);
+    vi.mocked(useRouter).mockReturnValue({ refresh } as unknown as ReturnType<typeof useRouter>);
     const user = userEvent.setup();
     render(<BackendUnavailable />);
     await user.tab();

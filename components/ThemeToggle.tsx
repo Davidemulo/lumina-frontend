@@ -5,7 +5,7 @@
  * Reads/writes via useTheme which persists to localStorage.
  */
 import { useTheme, type Theme } from '@/lib/useTheme';
-import { t } from '@/lib/i18n';
+import { t, type MessageKey } from '@/lib/i18n';
 
 const ICONS: Record<Theme, string> = {
   system: '💻',
@@ -13,7 +13,7 @@ const ICONS: Record<Theme, string> = {
   dark: '🌙',
 };
 
-const LABELS: Record<Theme, string> = {
+const LABELS: Record<Theme, MessageKey> = {
   system: 'theme.system',
   light: 'theme.light',
   dark: 'theme.dark',

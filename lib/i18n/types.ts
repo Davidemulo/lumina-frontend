@@ -313,7 +313,6 @@ export interface MessageCatalogue {
   "explorer.description": string;
   "explorer.searchPlaceholder": string;
   "explorer.recentTransactions": string;
-  "explorer.loading": string;
 
   // ── Events page ───────────────────────────────────────────────────────
   "events.heading": string;

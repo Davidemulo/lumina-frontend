@@ -9,7 +9,8 @@ const de: MessageCatalogue = {
   "error.errorDigest": "Fehlerzusammenfassung: {digest}",
 
   // ── Backend unavailable ───────────────────────────────────────────────
-  "error.backendUnavailableTitle": "Lumina-Daten sind vorübergehend nicht verfügbar",
+  "error.backendUnavailableTitle":
+    "Lumina-Daten sind vorübergehend nicht verfügbar",
   "error.backendUnavailableBody":
     "Wir konnten den Indexer nicht erreichen. Überprüfen Sie Ihre Verbindung oder versuchen Sie es in einem Moment erneut; Ihre Anfrage ging nicht verloren.",
   "error.retry": "Erneut versuchen",
@@ -51,7 +52,8 @@ const de: MessageCatalogue = {
   "connection.whatDoesMean": "Was bedeutet {label}?",
 
   // ── Transaction explorer ──────────────────────────────────────────────
-  "explorer.couldNotLoad": "Weitere Transaktionen konnten nicht geladen werden.",
+  "explorer.couldNotLoad":
+    "Weitere Transaktionen konnten nicht geladen werden.",
   "explorer.noTransactionsYet": "Noch keine Transaktionen indexiert.",
   "explorer.noMatchingFilters": "Keine Transaktionen passen zu diesen Filtern.",
   "explorer.filteredCount": "{filtered} von {total} geladen",
@@ -64,21 +66,30 @@ const de: MessageCatalogue = {
   "liveFeed.fetching": "Live-Daten werden abgerufen...",
   "liveFeed.noTransactions": "Keine Transaktionen gefunden.",
   "liveFeed.updated": "Aktualisiert {time}",
+  "liveFeed.pauseFeed": "Feed pausieren",
+  "liveFeed.resumeFeed": "Feed fortsetzen",
+  "liveFeed.resumeFeedCount": "Feed fortsetzen ({count})",
+  "liveFeed.updatesWaiting":
+    "{count} {count, plural, one {Aktualisierung wartet} other {Aktualisierungen warten}}",
+  "liveFeed.updatesArrived":
+    "{count} {count, plural, one {Aktualisierung ist während der Pause eingetroffen} other {Aktualisierungen sind während der Pause eingetroffen}}",
+  "liveFeed.newTransactions":
+    "{count} neue {count, plural, one {Transaktion} other {Transaktionen}}",
 
   // ── Account operations ────────────────────────────────────────────────
   "accountOps.noOperations": "Noch keine Operationen.",
-  "accountOps.showingRecent":
-    "Zeige {count} Ihrer letzten Operationen",
+  "accountOps.showingRecent": "Zeige {count} Ihrer letzten Operationen",
   "accountOps.allOperations": "Alle {count} Operationen",
-  "accountOps.couldNotLoad": "Weitere Operationen konnten nicht geladen werden.",
+  "accountOps.couldNotLoad":
+    "Weitere Operationen konnten nicht geladen werden.",
   "accountOps.endOfResults": "Ende der Ergebnisse",
 
   // ── Account transactions ──────────────────────────────────────────────
   "accountTxs.noTransactions": "Noch keine Transaktionen.",
-  "accountTxs.showingRecent":
-    "Zeige die {count} neuesten Transaktionen",
+  "accountTxs.showingRecent": "Zeige die {count} neuesten Transaktionen",
   "accountTxs.allTransactions": "Alle {count} Transaktionen",
-  "accountTxs.couldNotLoad": "Weitere Transaktionen konnten nicht geladen werden.",
+  "accountTxs.couldNotLoad":
+    "Weitere Transaktionen konnten nicht geladen werden.",
   "accountTxs.endOfResults": "Ende der Ergebnisse",
 
   // ── Assets ────────────────────────────────────────────────────────────
@@ -102,6 +113,10 @@ const de: MessageCatalogue = {
   "copy.copy": "Kopieren",
   "copy.copied": "Kopiert!",
   "copy.failed": "Fehlgeschlagen",
+  "copy.copyAddress": "Adresse in die Zwischenablage kopieren",
+  "copy.copiedAddress": "Adresse in die Zwischenablage kopiert",
+  "copy.copyHash": "Transaktionshash in die Zwischenablage kopieren",
+  "copy.copiedHash": "Transaktionshash in die Zwischenablage kopiert",
 
   // ── Load more footer ──────────────────────────────────────────────────
   "loadMore.loadMore": "Mehr laden",
@@ -150,7 +165,8 @@ const de: MessageCatalogue = {
   "owner.staking": "Staking\u2026",
   "owner.stake": "Staken",
   "owner.stakeAnyway": "Trotzdem staken",
-  "owner.reserveWarningTitle": "Dieses Staking würde dein Konto unter sein Mindestguthaben bringen.",
+  "owner.reserveWarningTitle":
+    "Dieses Staking würde dein Konto unter sein Mindestguthaben bringen.",
   "owner.reserveExplanation":
     "Stellar hält in jedem Konto ein Mindestguthaben in XLM, die Reserve. Sie beträgt 1 XLM für ein Konto ohne weitere Einträge, plus 0,5 XLM für jede Trustline, jedes Angebot oder anderen Eintrag, den es besitzt. Dieser Teil kann nicht ausgegeben werden. Nach diesem Staking hätte dein Konto {remaining} XLM, unter der Reserve von {minimum} XLM. Ein Konto unter seiner Reserve kann weiterhin XLM empfangen, aber keine Transaktionen senden, bis es wieder aufgefüllt wurde.",
   "owner.withdrawing": "Abheben\u2026",
@@ -169,7 +185,8 @@ const de: MessageCatalogue = {
   "owner.slashHistory": "Slash-Verlauf",
   "owner.lifetimeSlashed": "Lebenszeit geslashed: {amount} XLM",
   "owner.loadingSlashHistory": "Slash-Verlauf wird geladen\u2026",
-  "owner.couldNotLoadSlashHistory": "Slash-Verlauf konnte nicht geladen werden.",
+  "owner.couldNotLoadSlashHistory":
+    "Slash-Verlauf konnte nicht geladen werden.",
   "owner.noSlashes": "Keine Slashes aufgezeichnet.",
   "owner.withdrawBlockerActive":
     "Deaktivieren Sie zuerst diese Registrierung; der Einsatz kann erst nach der Deaktivierung abgehoben werden.",
@@ -263,20 +280,24 @@ const de: MessageCatalogue = {
   "shortcuts.title": "Tastaturkürzel",
   "shortcuts.search": "Suchen",
   "shortcuts.showList": "Diese Liste anzeigen",
-  "shortcuts.description": "Tastaturkürzel verwenden nie Ctrl, Cmd oder Alt und werden ignoriert, während Sie in einem Feld tippen.",
+  "shortcuts.description":
+    "Tastaturkürzel verwenden nie Ctrl, Cmd oder Alt und werden ignoriert, während Sie in einem Feld tippen.",
   "shortcuts.enable": "Tastaturkürzel aktivieren",
 
   // ── Search page ───────────────────────────────────────────────────────
   "search.heading": "Suche",
-  "search.description": "Ein Feld für alles im Netzwerk. Geben Sie ein, was Sie haben \u2014 Sie müssen nicht sagen, was es ist.",
+  "search.description":
+    "Ein Feld für alles im Netzwerk. Geben Sie ein, was Sie haben \u2014 Sie müssen nicht sagen, was es ist.",
   "search.accountAddress": "Kontoadresse",
   "search.contractId": "Vertrags-ID \u2014 dessen Ereignisse",
   "search.transactionHash": "Transaktionshash",
   "search.memoSearch": "Memo-Suche, sortiert nach Relevanz",
   "search.searching": "Index wird durchsucht\u2026",
-  "search.resultsCount": "{count} Transaktion{count, plural, one {} other {en}} gefunden",
+  "search.resultsCount":
+    "{count} Transaktion{count, plural, one {} other {en}} gefunden",
   "search.rankedByMemo": ", sortiert nach Memo-Relevanz.",
-  "search.helpText": "Suchen Sie ein Konto oder einen Vertrag? Fügen Sie die volle Adresse ein \u2014 der Explorer bringt Sie direkt dorthin.",
+  "search.helpText":
+    "Suchen Sie ein Konto oder einen Vertrag? Fügen Sie die volle Adresse ein \u2014 der Explorer bringt Sie direkt dorthin.",
 
   // ── Transactions page ─────────────────────────────────────────────────
   "transactions.heading": "Transaktionen",
@@ -284,7 +305,8 @@ const de: MessageCatalogue = {
 
   // ── Stats page ────────────────────────────────────────────────────────
   "stats.heading": "Netzwerk-Statistiken",
-  "stats.description": "Indexer-Gesundheit und Stellar-Netzwerk-Durchsatz auf einen Blick.",
+  "stats.description":
+    "Indexer-Gesundheit und Stellar-Netzwerk-Durchsatz auf einen Blick.",
   "stats.latestLedger": "Neuester Ledger",
   "stats.stellarMainnet": "Stellar Mainnet",
   "stats.txsLastLedger": "Txs (letzter Ledger)",
@@ -295,21 +317,26 @@ const de: MessageCatalogue = {
   "stats.protocolTarget": "~5s",
   "stats.protocolTargetHint": "Protokoll-Ziel, kein Live-Durchschnitt",
   "stats.operationBreakdown": "Aufschlüsselung nach Operationstyp",
-  "stats.basedOnRecent": "Basierend auf den {count} neuesten indexierten Operationen.",
+  "stats.basedOnRecent":
+    "Basierend auf den {count} neuesten indexierten Operationen.",
 
   // ── Registry page ─────────────────────────────────────────────────────
   "registry.heading": "Lumina Registry",
-  "registry.description": "Ein on-chain Soroban-Manifest der Verträge, die Lumina indexiert. Registrieren Sie Ihren Vertrag, um in die priorisierte Indizierung aufgenommen zu werden \u2014 permissionslos, auf Stellar/Soroban Testnet.",
+  "registry.description":
+    "Ein on-chain Soroban-Manifest der Verträge, die Lumina indexiert. Registrieren Sie Ihren Vertrag, um in die priorisierte Indizierung aufgenommen zu werden \u2014 permissionslos, auf Stellar/Soroban Testnet.",
   "registry.registerContract": "Vertrag registrieren",
   "registry.connecting": "Verbinden\u2026",
-  "registry.connectPrompt": "Verbinden Sie ein Wallet, um Verträge zu registrieren und zu verwalten.",
+  "registry.connectPrompt":
+    "Verbinden Sie ein Wallet, um Verträge zu registrieren und zu verwalten.",
   "registry.walletLocked": "Ihr Wallet ist gesperrt",
-  "registry.unlockHint": "Entsperren Sie Ihre Wallet-Erweiterung und versuchen Sie es erneut.",
+  "registry.unlockHint":
+    "Entsperren Sie Ihre Wallet-Erweiterung und versuchen Sie es erneut.",
   "registry.myContracts": "Meine Verträge",
   "registry.recentlyRegistered": "Kürzlich registriert",
   "registry.all": "Alle",
   "registry.filterByCategory": "Nach Kategorie filtern",
-  "registry.connectToSee": "Verbinden Sie ein Wallet, um die von Ihnen registrierten Verträge zu sehen.",
+  "registry.connectToSee":
+    "Verbinden Sie ein Wallet, um die von Ihnen registrierten Verträge zu sehen.",
   "registry.loadingEntries": "Registry-Einträge werden geladen\u2026",
   "registry.noActiveContracts": "Keine aktiven {category}-Verträge.",
   "registry.noContractsYet": "Noch keine Verträge registriert.",
@@ -325,27 +352,33 @@ const de: MessageCatalogue = {
   "graphql.running": "Wird ausgeführt\u2026",
   "graphql.runQuery": "Abfrage ausführen",
   "graphql.response": "Antwort",
-  "graphql.clickToRun": "Klicken Sie auf \u201eAbfrage ausführen\u201c, um die Antwort zu sehen.",
+  "graphql.clickToRun":
+    "Klicken Sie auf \u201eAbfrage ausführen\u201c, um die Antwort zu sehen.",
 
   // ── Explorer page ─────────────────────────────────────────────────────
   "explorer.heading": "Explorer",
-  "explorer.description": "Durchsuchen Sie jedes Stellar-Konto oder blättern Sie durch aktuelle Transaktionen in Echtzeit.",
-  "explorer.searchPlaceholder": "Konto, Transaktion, Vertrag oder Memo suchen\u2026",
+  "explorer.description":
+    "Durchsuchen Sie jedes Stellar-Konto oder blättern Sie durch aktuelle Transaktionen in Echtzeit.",
+  "explorer.searchPlaceholder":
+    "Konto, Transaktion, Vertrag oder Memo suchen\u2026",
   "explorer.recentTransactions": "Aktuelle Transaktionen",
 
   // ── Events page ───────────────────────────────────────────────────────
   "events.heading": "Vertrags-Ereignisse",
-  "events.description": "Soroban-Vertrags-Ereignisse, indexiert über RPC, neueste zuerst.",
+  "events.description":
+    "Soroban-Vertrags-Ereignisse, indexiert über RPC, neueste zuerst.",
   "events.contractIdPlaceholder": "Vertrags-ID (C...)",
   "events.filter": "Filtern",
 
   // ── Assets page ───────────────────────────────────────────────────────
   "assets.heading": "Assets",
-  "assets.description": "Jedes Asset, das Lumina indexiert, mit Angebot und Inhaberzahlen.",
+  "assets.description":
+    "Jedes Asset, das Lumina indexiert, mit Angebot und Inhaberzahlen.",
 
   // ── Watch page ────────────────────────────────────────────────────────
   "watch.backgroundNotifications": "Hintergrund-Benachrichtigungen",
-  "watch.notificationDescription": "In-App-Alerts funktionieren überall in Lumina. Dies ist die separate Opt-in-Option für eine Betriebssystembenachrichtigung, wenn der Tab nicht im Vordergrund ist.",
+  "watch.notificationDescription":
+    "In-App-Alerts funktionieren überall in Lumina. Dies ist die separate Opt-in-Option für eine Betriebssystembenachrichtigung, wenn der Tab nicht im Vordergrund ist.",
 
   // ── Footer ────────────────────────────────────────────────────────────
   "footer.version": "Lumina Frontend v{version}",

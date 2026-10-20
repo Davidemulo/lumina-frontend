@@ -239,7 +239,11 @@ export default async function ContractPage({
                           value={entry.value}
                           initialExpandedDepth={2}
                           showRawToggle
-                          rawValue={entry.value}
+                          rawValue={
+                            typeof entry.value === "string"
+                              ? entry.value
+                              : JSON.stringify(entry.value)
+                          }
                         />
                       </td>
                       <td className="py-2.5 px-3 mono text-xs text-[var(--color-text-secondary)]">

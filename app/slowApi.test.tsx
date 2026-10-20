@@ -94,8 +94,6 @@ function ledger(overrides: Partial<Ledger> = {}): Ledger {
     closedAt: new Date().toISOString(),
     transactionCount: 42,
     operationCount: 99,
-    baseFee: 100,
-    baseReserve: 5000000,
     ...overrides,
   };
 }
@@ -115,7 +113,7 @@ function transaction(overrides: Partial<Transaction> = {}): Transaction {
   };
 }
 
-function operation(type = "payment"): Operation {
+function operation(type: Operation["type"] = "PAYMENT"): Operation {
   return {
     id: `op-${type}`,
     type,

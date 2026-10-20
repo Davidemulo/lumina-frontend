@@ -76,7 +76,7 @@ describe("legacy format", () => {
     const legacy = memoryStorage(JSON.stringify([ADDRESS]));
     addWatch(OTHER, legacy);
 
-    const reread = memoryStorage(legacy.raw());
+    const reread = memoryStorage(legacy.raw() ?? undefined);
     expect(watchedAddresses(reread)).toEqual([ADDRESS, OTHER]);
     expect(loadWatches(reread)[0].filters).toEqual(DEFAULT_OPERATION_FILTERS);
   });

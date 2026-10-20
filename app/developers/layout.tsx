@@ -43,9 +43,7 @@ export default function DevelopersLayout({
     <div className="flex min-h-[calc(100vh-60px)]">
       <DevelopersSidebar />
       <main className="flex-1 overflow-auto">
-        <div className="max-w-4xl mx-auto px-4 sm:px-7 py-12">
-          {children}
-        </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-7 py-12">{children}</div>
       </main>
     </div>
   );

@@ -5,10 +5,11 @@
  * has to be: it is fetched by the browser at the origin root, outside the
  * module graph, so anything the bundler produces would not be there to load.
  *
- * It handles push alerts and an offline-first application shell. Navigation
+ * It handles push alerts and a cached static application shell. Navigation
  * and API data stay network-first, while immutable build assets are
- * cache-first. Bumping CACHE_VERSION gives deployments a deterministic update
- * path: install the new cache, activate immediately, then remove old caches.
+ * cache-first. Data expires after five minutes offline. Bumping CACHE_VERSION
+ * gives deployments a deterministic update path: install the new cache,
+ * activate immediately, then remove old caches.
  *
  * Delivery: a payload shaped like
  *   { "title": string, "body": string, "address": string,
@@ -23,12 +24,14 @@
 
 /* global self */
 
-const CACHE_VERSION = "lumina-v1";
+const CACHE_VERSION = "lumina-v2";
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const ASSET_CACHE = `${CACHE_VERSION}-assets`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
+// Explorer data must never silently survive an indefinite offline session.
+const DATA_MAX_AGE_MS = 5 * 60 * 1000;
+const CACHED_AT = "X-Lumina-Cached-At";
 const APP_SHELL = [
-  "/",
   "/manifest.webmanifest",
   "/icons/icon-192.svg",
   "/icons/icon-512.svg",
@@ -53,7 +56,8 @@ self.addEventListener("activate", (event) => {
             names
               .filter(
                 (name) =>
-                  name.startsWith("lumina-") && !name.startsWith(CACHE_VERSION),
+                  name.startsWith("lumina-") &&
+                  ![SHELL_CACHE, ASSET_CACHE, DATA_CACHE].includes(name),
               )
               .map((name) => caches.delete(name)),
           ),
@@ -67,38 +71,69 @@ function isAsset(request) {
   const url = new URL(request.url);
   return (
     url.origin === self.location.origin &&
-    (url.pathname.startsWith("/_next/static/") ||
+    (APP_SHELL.includes(url.pathname) ||
+      url.pathname.startsWith("/_next/static/") ||
       url.pathname.startsWith("/icons/") ||
       ["style", "script", "font", "image"].includes(request.destination))
   );
 }
 
 async function cacheFirst(request) {
-  const cached = await caches.match(request);
+  const cache = await caches.open(ASSET_CACHE);
+  const cached =
+    (await cache.match(request)) ??
+    (await (await caches.open(SHELL_CACHE)).match(request));
   if (cached) return cached;
   const response = await fetch(request);
-  if (response.ok)
-    (await caches.open(ASSET_CACHE)).put(request, response.clone());
+  if (response.ok) {
+    try {
+      await cache.put(request, response.clone());
+    } catch {
+      // A full cache must not prevent the browser from loading a live asset.
+    }
+  }
   return response;
 }
 
 async function networkFirst(request) {
   const cache = await caches.open(DATA_CACHE);
+  let response;
   try {
-    const response = await fetch(request);
-    if (response.ok && request.method === "GET")
-      await cache.put(request, response.clone());
-    return response;
+    response = await fetch(request);
   } catch (error) {
-    const cached =
-      request.method === "GET" ? await cache.match(request) : undefined;
-    if (cached) return cached;
-    if (request.mode === "navigate") {
-      const shell = await caches.match("/");
-      if (shell) return shell;
+    const cached = await cache.match(request);
+    if (cached) {
+      const savedAt = Number(cached.headers.get(CACHED_AT));
+      const age = Date.now() - savedAt;
+      if (savedAt > 0 && age >= 0 && age < DATA_MAX_AGE_MS) return cached;
+      await cache.delete(request);
     }
     throw error;
   }
+  try {
+    if (
+      response.ok &&
+      !/\bno-store\b/i.test(response.headers.get("Cache-Control") ?? "")
+    ) {
+      const copy = response.clone();
+      const headers = new Headers(copy.headers);
+      headers.set(CACHED_AT, String(Date.now()));
+      await cache.put(
+        request,
+        new Response(await copy.blob(), {
+          status: copy.status,
+          statusText: copy.statusText,
+          headers,
+        }),
+      );
+    } else {
+      // An authoritative failure or no-store response invalidates older success.
+      await cache.delete(request);
+    }
+  } catch {
+    // Cache quota/permission failures must not replace a successful live response.
+  }
+  return response;
 }
 
 self.addEventListener("fetch", (event) => {

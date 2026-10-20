@@ -44,7 +44,7 @@ export function Field({
           {helpText}
         </p>
       ) : null}
-      {React.isValidElement(children)
+      {React.isValidElement<React.AriaAttributes>(children)
         ? React.cloneElement(children, {
             'aria-invalid': error ? true : undefined,
             'aria-describedby': describedBy,

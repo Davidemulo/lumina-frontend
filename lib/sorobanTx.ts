@@ -243,7 +243,7 @@ export function createStellarDriver({
 
       // Extract the estimated fee from the simulation result's transaction data.
       const sorobanData = sim.transactionData.build();
-      const simulatedFee = sorobanData.fee().toString();
+      const simulatedFee = sorobanData.resourceFee().toString();
 
       // Cap at the configurable ceiling.
       const estimatedFee =

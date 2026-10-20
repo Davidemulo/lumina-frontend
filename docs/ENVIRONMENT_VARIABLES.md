@@ -133,3 +133,10 @@ NEXT_PUBLIC_SOROBAN_RPC_URL=https://soroban-mainnet.stellar.org
 NEXT_PUBLIC_NETWORK_PASSPHRASE=Public Global Stellar Network ; September 2015
 NEXT_PUBLIC_REGISTRY_READ_ACCOUNT=[mainnet account]
 ```
+
+## Bundle inventory build flag
+
+`BUNDLE_CONTENTS=true` is set by `npm run build:bundle` to generate browser
+source maps for `npm run bundle:contents`. It is build-only instrumentation,
+not a browser variable or a deployment setting. Normal builds leave it unset.
+See [the contribution guide](../CONTRIBUTING.md#bundle-contents) for the rules.
