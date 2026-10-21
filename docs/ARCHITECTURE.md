@@ -101,6 +101,10 @@ The notable modules:
   `robots.txt` and per-route metadata all read from it, so adding a route is one
   entry rather than four edits that drift.
 - `lib/metadata.ts` — `routeMetadata` and the generated OpenGraph images.
+- `lib/contractActivity.ts` — bounded, deduplicated registry activity probes;
+  failed probes remain `unknown` instead of being misreported as quiet.
+- `lib/developerKeys.ts` — wallet-scoped API-key storage and quota helpers,
+  with storage failures degraded to an in-memory result.
 - `lib/formatters.ts` — display helpers (`formatXLM`, `truncateAddress`, …).
 - `lib/registry.ts`, `lib/wallet.ts`, `lib/sorobanTx.ts` — the on-chain read and
   write path described below.
@@ -196,4 +200,3 @@ Developer API keys and usage quotas (`/developers/usage`) are scoped to the acti
 - **Key Ownership Association**: API keys and quota tracking are bound 1:1 to the connected Stellar wallet address (`ownerAddress`).
 - **Protected Management**: The usage dashboard requires an active wallet connection (`readPersistedSession()` / `getConnectedWallet()`) before rendering key details or allowing key creation/revocation.
 - **Graceful Disconnection**: Disconnecting a wallet immediately hides sensitive API keys and usage data. Keys remain safely stored and bound to the wallet address in storage, restoring visibility when the owner reconnects.
-
